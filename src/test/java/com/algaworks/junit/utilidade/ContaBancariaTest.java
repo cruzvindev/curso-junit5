@@ -65,9 +65,9 @@ class ContaBancariaTest {
 
     @Test
     void deveDepositarAoForncerValorValido(){
-        ContaBancaria contaBancaria = new ContaBancaria(BigDecimal.valueOf(0));
+        ContaBancaria contaBancaria = new ContaBancaria(BigDecimal.valueOf(100));
         contaBancaria.deposito(BigDecimal.valueOf(200));
-        assertEquals(contaBancaria.saldo(), BigDecimal.valueOf(200));
+        assertEquals(contaBancaria.saldo(), BigDecimal.valueOf(300));
     }
 
     @Test
@@ -79,7 +79,7 @@ class ContaBancariaTest {
     @Test
     void deveLancarExcecaoAoPassarZeroParaDepositar(){
         ContaBancaria contaBancaria = new ContaBancaria(BigDecimal.valueOf(100));
-        assertThrows(IllegalArgumentException.class, () -> contaBancaria.deposito(null));
+        assertThrows(IllegalArgumentException.class, () -> contaBancaria.deposito(ZERO));
     }
 
     @Test

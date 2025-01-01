@@ -30,7 +30,7 @@ public class ContaBancaria {
         if(Objects.isNull(valor) || valor.equals(ZERO) || valor.doubleValue() < 0){
             throw new IllegalArgumentException("O valor fornecido para saque é inválido");
         }
-        this.saldo = valor;
+        this.saldo = this.saldo.add(valor);
     }
     public BigDecimal saldo() {
         return this.saldo;
