@@ -7,7 +7,7 @@ import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CadastroEditorTest {
+class CadastroEditorComStubTest {
 
     CadastroEditor cadastroEditor;
     Editor editor;
