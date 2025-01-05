@@ -6,27 +6,32 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@ExtendWith(MockitoExtension.class)
 public class CadastroEditorComMockTest {
 
-    CadastroEditor cadastroEditor;
     Editor editor;
+    @Mock
+    ArmazenamentoEditor armazenamentoEditor; //Os mocks são criados novamente a cada teste
+    @Mock
+    GerenciadorEnvioEmail gerenciadorEnvioEmail;
+    @InjectMocks
+    CadastroEditor cadastroEditor;
 
     @BeforeEach
     void init(){
         editor = new Editor(null, "Vinicius", "vinicius@email.com", TEN, true);
-
-        ArmazenamentoEditor armazenamentoEditor = Mockito.mock(ArmazenamentoEditor.class);
         Mockito.when(armazenamentoEditor.salvar(editor))
                 .thenReturn(new Editor(1L, "Vinicius", "vinicius@email.com", TEN, true));
-
-        GerenciadorEnvioEmail gerenciadorEnvioEmail = Mockito.mock(GerenciadorEnvioEmail.class);
-        cadastroEditor = new CadastroEditor(armazenamentoEditor, gerenciadorEnvioEmail);
     }
 
     @Test
@@ -34,6 +39,5 @@ public class CadastroEditorComMockTest {
         Editor editorSalvo = cadastroEditor.criar(editor);
         assertEquals(1L, editorSalvo.getId());
     }
-
 
 }
