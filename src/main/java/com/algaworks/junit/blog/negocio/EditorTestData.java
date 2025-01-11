@@ -3,7 +3,6 @@ package com.algaworks.junit.blog.negocio;
 import com.algaworks.junit.blog.modelo.Editor;
 
 import static java.math.BigDecimal.TEN;
-import static java.math.BigDecimal.ZERO;
 
 public class EditorTestData {
     private EditorTestData(){}
